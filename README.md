@@ -44,3 +44,7 @@ versions prior to version 2.0.
 2. Run the `download_models.py` script to download two example embedding models.
 3. Run the `run_example.py` script to see that everything is working.
 4. Run the `run_server.sh` (or `runserver.bat`) script to launch the web interface.
+
+## Custom requirements for us
+Run the command below to install the (possibly) required packages
+`pip install -r requirements.txt`
