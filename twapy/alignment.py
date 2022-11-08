@@ -212,7 +212,7 @@ def apply_wv2_regression(model, regression):
     ::returns:: A gensim `KeyedVectors` instance
     """
     debug("Applying transformation")
-    model_t = KeyedVectors() # Word2Vec()
+    model_t = KeyedVectors(256) # Word2Vec()
     model_t.wv.vocab = model.vocab.copy()
     model_t.wv.vector_size = model.vector_size
     model_t.wv.index2word = model.index2word

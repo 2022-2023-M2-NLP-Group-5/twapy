@@ -43,7 +43,7 @@ class VectorSpaceModel(object):
 
     def __init__(self, name=None):
         self.name = name
-        self.m = KeyedVectors()
+        self.m = KeyedVectors(256)
         return
 
     @classmethod
