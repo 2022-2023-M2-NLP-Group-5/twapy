@@ -1,5 +1,7 @@
+# NOTE: use python 3.9 (tested on 3.9.13)
 gensim==3.5.0
 sklearn==0.0
 flask==2.2.2
 pandas==1.5.1
-requests=2.28.1
+requests==2.28.1
+
