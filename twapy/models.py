@@ -33,7 +33,10 @@ except:
     sys.exit(1)
 
 import pandas as pd
-def load_w2v_from_csv(filename):
+def load_w2v_from_csv(filename, n_data_columns:int=100):
+    """Written for DUKweb CSVs (after they are normalized for column length), but will probably work for other CSVs as well.
+
+    TBD: sniff-detect the column length."""
     # https://stackoverflow.com/questions/58393090/how-to-save-as-a-gensim-word2vec-file
     # kv = new KeyedVectors(512)
     # kv.add(words_list, vectors_list)
@@ -43,7 +46,7 @@ def load_w2v_from_csv(filename):
     words_list = df.iloc[:, 0]
     vectors_list = df.iloc[:, 1:]
 
-    m = KeyedVectors(100)
+    m = KeyedVectors(n_data_columns)
     m.add(words_list, vectors_list)
     return m
 
