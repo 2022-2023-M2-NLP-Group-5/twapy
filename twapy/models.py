@@ -32,6 +32,20 @@ except:
     import sys
     sys.exit(1)
 
+import pandas as pd
+def load_w2v_from_csv(filename):
+    # https://stackoverflow.com/questions/58393090/how-to-save-as-a-gensim-word2vec-file
+    # kv = new KeyedVectors(512)
+    # kv.add(words_list, vectors_list)
+
+    df = pd.read_csv(filename)
+
+    words_list = df.iloc[:, 0]
+    vectors_list = df.iloc[:, 1:]
+
+    m = KeyedVectors(100)
+    m.add(words_list, vectors_list)
+    return m
 
 class VectorSpaceModel(object):
 
@@ -66,6 +80,9 @@ class VectorSpaceModel(object):
         debug("Loading word2vec model from file {:}".format(filename))
         if filename.endswith(".bin"):
             m = KeyedVectors.load_word2vec_format(filename, binary=True)
+        elif filename.endswith(".csv"):
+            # m = KeyedVectors.load(filename) # doesn't work
+            m = load_w2v_from_csv(filename)
         else:
             m = KeyedVectors.load_word2vec_format(filename)
         model = cls()
