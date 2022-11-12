@@ -36,6 +36,7 @@ import pandas as pd
 
 DEFAULT_TWAPY_VECTOR_SIZE:int = 256
 DEFAULT_DUKWEB_W2V_VECTOR_SIZE = 100
+VECTOR_SIZE = DEFAULT_DUKWEB_W2V_VECTOR_SIZE
 
 def load_w2v_from_csv(filename, n_data_columns:int=VECTOR_SIZE):
     """Written for DUKweb CSVs (after they are normalized for column length), but will probably work for other CSVs as well.
