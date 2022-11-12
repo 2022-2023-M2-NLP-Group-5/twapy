@@ -26,7 +26,8 @@ from gensim.models import KeyedVectors
 from . import VectorSpaceModel
 from . import error, warn, info, debug
 
-
+# from .models import DEFAULT_TWAPY_VECTOR_SIZE as VECTOR_SIZE
+from .models import DEFAULT_DUKWEB_W2V_VECTOR_SIZE as VECTOR_SIZE
 
 class Alignment(object):
 
@@ -212,7 +213,7 @@ def apply_wv2_regression(model, regression):
     ::returns:: A gensim `KeyedVectors` instance
     """
     debug("Applying transformation")
-    model_t = KeyedVectors(256) # Word2Vec()
+    model_t = KeyedVectors(VECTOR_SIZE)
     model_t.wv.vocab = model.vocab.copy()
     model_t.wv.vector_size = model.vector_size
     model_t.wv.index2word = model.index2word

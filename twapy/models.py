@@ -33,7 +33,11 @@ except:
     sys.exit(1)
 
 import pandas as pd
-def load_w2v_from_csv(filename, n_data_columns:int=100):
+
+DEFAULT_TWAPY_VECTOR_SIZE:int = 256
+DEFAULT_DUKWEB_W2V_VECTOR_SIZE = 100
+
+def load_w2v_from_csv(filename, n_data_columns:int=VECTOR_SIZE):
     """Written for DUKweb CSVs (after they are normalized for column length), but will probably work for other CSVs as well.
 
     TBD: sniff-detect the column length."""
@@ -60,7 +64,7 @@ class VectorSpaceModel(object):
 
     def __init__(self, name=None):
         self.name = name
-        self.m = KeyedVectors(256)
+        self.m = KeyedVectors(VECTOR_SIZE)
         return
 
     @classmethod

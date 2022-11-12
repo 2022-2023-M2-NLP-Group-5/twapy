@@ -47,15 +47,11 @@ def normalize_csv_line_merge_left(input_line:str, n_output_cols:int) -> str:
     out_fields = [left_part_merged] + right_part
     output_line = ','.join(out_fields)
 
-    # merge_happened_msg = ''
-    # if len(orig_fields) != n_output_cols:
-    #     merge_happened_msg = '*MERGE HAPPENED*'
-
     merge_happened_msg = '*MERGE HAPPENED*'
     if len(orig_fields) == n_output_cols:
         merge_happened_msg = ' ' * len(merge_happened_msg)
 
-    print('{} orig fields, {} output fields, split index: {}  {} :: {}'.
+    print('{} orig fields, {} output fields, split index: {} :: {} :: {}'.
           format(len(orig_fields), n_output_cols, split_before_index,
                  merge_happened_msg, left_part_merged),
           file=sys.stderr)
@@ -63,11 +59,15 @@ def normalize_csv_line_merge_left(input_line:str, n_output_cols:int) -> str:
     # print(output_line, file=sys.stderr)
     return output_line
 
+def test_normalize_csv_line_merge_left():
+    normalize_csv_line_merge_left(TEST_INPUT_CSV_LINE_104_COLS, EXPECTED_NUM_OF_COLUMNS)
+    normalize_csv_line_merge_left(TEST_INPUT_CSV_LINE_101_COLS, EXPECTED_NUM_OF_COLUMNS)
+
 def normalize_lines(infilepath, columns):
     """generator"""
     with open(infilepath, 'r') as infile:
         for line_num, line in enumerate(infile):
-            print('line #: {}'.format(line_num), file=sys.stderr)
+            print('normalizing line #: {}'.format(line_num), file=sys.stderr)
             output_line = normalize_csv_line_merge_left(line, columns)
             yield output_line
 
@@ -79,5 +79,4 @@ def normalize_file(infilepath, columns:int=EXPECTED_NUM_OF_COLUMNS, outfilepath=
         print(l, file=outfilepath)
 
 if __name__ == '__main__':
-    # normalize_csv_line_merge_left(TEST_INPUT_CSV_LINE_104_COLS, EXPECTED_NUM_OF_COLUMNS) # for testing
     fire.Fire()
